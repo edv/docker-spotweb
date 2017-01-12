@@ -1,4 +1,4 @@
-FROM hypriot/rpi-alpine
+FROM easypi/alpine-arm:edge
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 RUN apk -U update && \
@@ -32,6 +32,7 @@ RUN apk -U update && \
 
 VOLUME ["/config"]
 
+COPY tmp/qemu-arm-static /usr/bin/qemu-arm-static
 COPY ./conf/spotweb.cron /etc/crontabs/spotweb
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx /etc/nginx
