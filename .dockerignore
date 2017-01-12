@@ -1,0 +1,10 @@
+# Git files
+.git
+.gitignore
+
+# Docs
+LICENSE
+README.md
+
+# PhpStorm
+.idea

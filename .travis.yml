@@ -1,0 +1,20 @@
+sudo: required
+
+services:
+- docker
+
+language: bash
+
+branches:
+  only:
+  - master
+
+script:
+  # prepare qemu
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  # build
+  - docker-compose build
+  # run
+  - docker-compose up -d spotweb
+  - docker-compose ps
+  - docker exec dockerarmspotweb_spotweb_1 ls
