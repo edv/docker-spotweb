@@ -1,1 +1,3 @@
-15 * * * *  /usr/bin/php /var/www/spotweb/retrieve.php
+#!/bin/sh
+
+/usr/bin/php /var/www/spotweb/retrieve.php

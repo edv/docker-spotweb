@@ -31,6 +31,7 @@ RUN apk -U update && \
 VOLUME ["/config"]
 
 COPY ./conf/cron/spotweb /etc/periodic/hourly/spotweb
+RUN chmod +x /etc/periodic/hourly/spotweb
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx /etc/nginx
 COPY ./conf/spotweb /var/www/spotweb
