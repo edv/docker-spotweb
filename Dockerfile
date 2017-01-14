@@ -28,7 +28,7 @@ RUN apk -U update && \
     rm -rf /tmp/src && \
     rm -rf /var/cache/apk/*
 
-VOLUME ["/config"]
+VOLUME ["/config", "/nzb"]
 
 COPY ./conf/cron/spotweb /etc/periodic/hourly/spotweb
 RUN chmod +x /etc/periodic/hourly/spotweb
