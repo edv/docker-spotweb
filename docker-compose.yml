@@ -1,0 +1,15 @@
+version: '2'
+services:
+  spotweb:
+    build: .
+    ports:
+     - "8080:80"
+    depends_on:
+    - "mysql"
+  mysql:
+    image: "hypriot/rpi-mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_USER: spotweb
+      MYSQL_PASSWORD: spotweb
+      MYSQL_DATABASE: spotweb
