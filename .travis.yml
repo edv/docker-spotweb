@@ -13,8 +13,15 @@ script:
   # prepare qemu
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   # build
-  - docker-compose build
-  # run
-  - docker-compose up -d spotweb
-  - docker-compose ps
-  - docker exec dockerarmspotweb_spotweb_1 ls
+  - docker build -t erikdevries/rpi-spotweb .
+  # run and test image
+  - docker run -p 8080:80 -it --entrypoint=/usr/bin/python erikdevries/rpi-spotweb --version
+
+after_success:
+# push image
+- >
+  if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    docker tag erikdevries/rpi-spotweb erikdevries/rpi-spotweb:latest
+    docker push erikdevries/rpi-spotweb
+  fi
