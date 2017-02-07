@@ -1,12 +1,12 @@
-# Dockerfile to set up Spotweb on ARM based systems
+# Dockerfile to set up Spotweb on ARM and X86 based systems
 
-[![Build Status](https://travis-ci.org/edv/docker-arm-spotweb.svg?branch=master)](https://travis-ci.org/edv/docker-arm-spotweb)
+[![Build Status](https://travis-ci.org/edv/docker-spotweb.svg?branch=master)](https://travis-ci.org/edv/docker-spotweb)
 
-The main goal of this Dockerfile is to easily set up Spotweb using Docker on the Raspberry Pi 2/3 (or any compatible ARM chipset).
+The main goal of this Dockerfile is to easily set up Spotweb using Docker on the Raspberry Pi 2/3 (or any compatible ARM chipset) and regular X86 chipsets.
 
 ## Quick setup
 
-* `docker-compose up`
+* `docker-compose -f docker-compose-arm.yml up` or `docker-compose -f docker-compose-x86.yml up` depending on cpu architecture
 * Visit `http://localhost:8080`
 * Login with username `admin` and password `spotweb`
 * Configure usenet server and wait for cronjob to update (runs once per hour)
