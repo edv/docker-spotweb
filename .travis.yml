@@ -10,18 +10,23 @@ branches:
   - master
 
 script:
-  # prepare qemu
+  # Build X86 docker image
+  - docker build -f ./x86/Dockerfile -t erikdevries/spotweb .
+  - docker run -it --entrypoint=/usr/bin/python erikdevries/spotweb --version
+  # Build ARM docker image
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  # build
-  - docker build -t erikdevries/rpi-spotweb .
-  # run and test image
-  - docker run -p 8080:80 -it --entrypoint=/usr/bin/python erikdevries/rpi-spotweb --version
+  - docker build -f ./arm/Dockerfile -t erikdevries/rpi-spotweb .
+  - docker run -it --entrypoint=/usr/bin/python erikdevries/rpi-spotweb --version
 
 after_success:
 # push image
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+    docker tag erikdevries/spotweb erikdevries/spotweb:latest
+    docker push erikdevries/spotweb
+
     docker tag erikdevries/rpi-spotweb erikdevries/rpi-spotweb:latest
     docker push erikdevries/rpi-spotweb
   fi

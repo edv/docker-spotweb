@@ -1,7 +1,9 @@
 version: '2'
 services:
   spotweb:
-    build: .
+    build:
+      context: .
+      dockerfile: ./arm/Dockerfile
     ports:
      - "8080:80"
     depends_on:
