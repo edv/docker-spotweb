@@ -1,4 +1,4 @@
-FROM hypriot/rpi-alpine
+FROM hypriot/rpi-alpine:3.6
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 RUN apk -U update && \
