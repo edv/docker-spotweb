@@ -37,6 +37,7 @@ COPY ./conf/cron/spotweb /etc/periodic/hourly/spotweb
 RUN chmod +x /etc/periodic/hourly/spotweb
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx /etc/nginx
+COPY ./conf/php-fpm/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./conf/spotweb /var/www/spotweb
 COPY ./entrypoint.sh /entrypoint.sh
 
