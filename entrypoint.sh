@@ -1,6 +1,9 @@
 #!/bin/sh
 
-until nc -z -v -w30 mysql 3306
+mysql_host="${DB_HOST:-mysql}"
+mysql_port="${DB_PORT:-3306}"
+
+until nc -z -v -w30 $mysql_host $mysql_port
 do
   echo "Waiting for database connection..."
   sleep 2
