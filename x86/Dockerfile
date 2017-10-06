@@ -38,6 +38,7 @@ RUN chmod +x /etc/periodic/hourly/spotweb
 COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/nginx /etc/nginx
 COPY ./conf/php-fpm/www.conf /etc/php7/php-fpm.d/www.conf
+COPY ./conf/php-fpm/php.ini /etc/php7/conf.d/zzz_custom.ini
 COPY ./conf/spotweb /var/www/spotweb
 COPY ./entrypoint.sh /entrypoint.sh
 

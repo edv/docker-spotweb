@@ -10,10 +10,10 @@ do
 done
 
 # Create required database tables for Spotweb
-sudo -u nobody php /var/www/spotweb/bin/upgrade-db.php
+sudo -E -u nobody php /var/www/spotweb/bin/upgrade-db.php
 
 # Reset password for admin to spotweb (default password)
-sudo -u nobody php /var/www/spotweb/bin/upgrade-db.php --reset-password admin
+sudo -E -u nobody php /var/www/spotweb/bin/upgrade-db.php --reset-password admin
 
 # Create directory to log output
 mkdir -p /data/logs/supervisor
