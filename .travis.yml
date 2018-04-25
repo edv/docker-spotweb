@@ -12,11 +12,9 @@ branches:
 script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/spotweb .
-  - docker run -it --entrypoint=/usr/bin/python erikdevries/spotweb --version
   # Build ARM docker image
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker build -f ./arm/Dockerfile -t erikdevries/rpi-spotweb .
-  - docker run -it --entrypoint=/usr/bin/python erikdevries/rpi-spotweb --version
 
 after_success:
 # push image
