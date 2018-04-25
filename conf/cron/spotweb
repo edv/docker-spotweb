@@ -1,3 +1,0 @@
-#!/bin/sh
-
-sudo -E -u nobody php /var/www/spotweb/retrieve.php

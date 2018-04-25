@@ -1,0 +1,3 @@
+#!/bin/sh
+
+s6-setuidgid abc php /app/retrieve.php
