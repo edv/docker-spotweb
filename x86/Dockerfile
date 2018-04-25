@@ -1,4 +1,4 @@
-FROM erikdevries/baseimage:2
+FROM erikdevries/baseimage:latest
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 RUN apk -U update && \
