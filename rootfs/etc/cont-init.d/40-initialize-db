@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-# upgrade the db
-s6-setuidgid abc php /app/bin/upgrade-db.php
-
-# reset the admin password to default (spotweb)
-s6-setuidgid abc php /app/bin/upgrade-db.php --reset-password admin
