@@ -1,4 +1,5 @@
-sudo: required
+sudo: false
+dist: trusty
 
 services:
 - docker
@@ -12,6 +13,7 @@ branches:
 script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/spotweb .
+
   # Build ARM docker image
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker build -f ./arm/Dockerfile -t erikdevries/rpi-spotweb .
