@@ -26,7 +26,7 @@ RUN apk -U update && \
         supervisor \
         sudo \
     && \
-    git clone --depth 1 https://github.com/spotweb/spotweb.git /var/www/spotweb && \
+    git clone --branch develop --depth 1 https://github.com/spotweb/spotweb.git /var/www/spotweb && \
     chown -R nobody:nobody /var/www/spotweb && \
     sed -i "s/date.timezone = UTC/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php7/php.ini && \
     rm -rf /tmp/src && \
