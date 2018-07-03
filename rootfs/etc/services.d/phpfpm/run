@@ -1,3 +1,4 @@
 #!/usr/bin/execlineb -P
 
+with-contenv
 php-fpm7 -F
