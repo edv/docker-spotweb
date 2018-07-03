@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb -P
+
+nginx -c /etc/nginx/nginx.conf
