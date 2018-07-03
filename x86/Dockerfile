@@ -27,8 +27,6 @@ RUN apk -U update && \
     git clone --branch develop --depth 1 https://github.com/spotweb/spotweb.git /app && \
     sed -i "s/date.timezone = UTC/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php7/php.ini
 
-VOLUME ["/config", "/nzb"]
-
 # Configure Spotweb
 COPY ./conf/spotweb /app
 
