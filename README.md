@@ -36,9 +36,9 @@ E.g. to configure server with host `some.external.mysql-server.com` and port `66
 ## Docker setup
 
 I decided on the following setup for this Docker image:
-* Image contains NGINX, PHP 7.1 and Crond
-* For the database a MySQL image is used
-* To prevent having to configure Spotweb manually `upgrade-db.php` is run to upgrade the database and reset the password for the admin user (so currently the `admin` always has password `spotweb`)
+* Image contains NGINX, PHP 7.2 and Crond
+* For the database a MySQL 5.x image is used (my experience is that MySQL 8 is not working correctly with Spotweb at this moment)
+* To prevent having to configure Spotweb manually `upgrade-db.php` is run to upgrade the database and reset the password for the admin user (so currently the `admin` always has password `spotweb`, you can change this after the first login)
 * Crond is used to run the `retrieve.php` script which updates Spotweb with the latest headers from a configured usenet server, the crontab is run every hour
 * The only required manual configuration is setting up a valid usenet server
 * Depending on what you like, you can mount the /nzb volume and let Spotweb save nzb's to that directory (e.g. mount /nzb to a folder watched by sabnzbd)
