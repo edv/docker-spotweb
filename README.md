@@ -6,6 +6,8 @@ The main goal of this Dockerfile is to easily set up Spotweb using Docker on the
 
 ## Quick setup using dockerfile
 
+*Spotweb always requires a database server (MySQL), the easiest solution is to use the docker-compose setup. The other option is to manually specify an external server using the ENV variables below.*
+
 `docker run -p 8080:80 --name spotweb -d -v /etc/localtime:/etc/localtime:ro erikdevries/spotweb`
 
 Provide one or more of the following environment variables to configure the database server (all optional, default values are given below):
