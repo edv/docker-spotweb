@@ -27,7 +27,7 @@ E.g. to configure server with host `some.external.mysql-server.com` and port `66
 * `docker-compose -f docker-compose-arm.yml up` or `docker-compose -f docker-compose-x86.yml up` depending on cpu architecture
 * Visit `http://localhost:8080`
 * Login with username `admin` and password `spotweb`
-* Configure usenet server and wait for cronjob to update (runs once per hour)
+* Configure usenet server and wait for cronjob to update (runs once every 15 minutes)
 
 ## Information
 
@@ -41,6 +41,6 @@ I decided on the following setup for this Docker image:
 * Image contains NGINX, PHP 7.2 and Crond
 * For the database a MySQL 5.x image is used (my experience is that MySQL 8 is not working correctly with Spotweb at this moment)
 * To prevent having to configure Spotweb manually `upgrade-db.php` is run to upgrade the database and reset the password for the admin user (so currently the `admin` always has password `spotweb`, you can change this after the first login)
-* Crond is used to run the `retrieve.php` script which updates Spotweb with the latest headers from a configured usenet server, the crontab is run every hour
+* Crond is used to run the `retrieve.php` script which updates Spotweb with the latest headers from a configured usenet server, the crontab is run every 15 minutes
 * The only required manual configuration is setting up a valid usenet server
 * Depending on what you like, you can mount the /nzb volume and let Spotweb save nzb's to that directory (e.g. mount /nzb to a folder watched by sabnzbd)
