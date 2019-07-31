@@ -23,6 +23,7 @@ RUN apk -U update && \
         php7-json \
         php7-mbstring \
         php7-ctype \
+        php7-opcache \
         mysql-client \
     && \
     git clone --depth 1 https://github.com/spotweb/spotweb.git /app && \
