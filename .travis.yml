@@ -25,8 +25,10 @@ after_success:
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
     docker tag erikdevries/spotweb erikdevries/spotweb:latest
+    docker tag erikdevries/spotweb erikdevries/spotweb:$TRAVIS_BUILD_NUMBER
     docker push erikdevries/spotweb
 
     docker tag erikdevries/rpi-spotweb erikdevries/rpi-spotweb:latest
+    docker tag erikdevries/rpi-spotweb erikdevries/rpi-spotweb:$TRAVIS_BUILD_NUMBER
     docker push erikdevries/rpi-spotweb
   fi
