@@ -31,8 +31,7 @@ RUN apk -U update && \
         php7-session \
         mysql-client \
     && \
-    git clone https://github.com/spotweb/spotweb.git /app && \
-    cd /app && git checkout 35e451ecab02f29a435326d4094aa7d9ff8f9c26 && \
+    git clone --depth=1 https://github.com/spotweb/spotweb.git /app && \
     sed -i "s/;date.timezone =/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php7/php.ini
 
 # Configure Spotweb
