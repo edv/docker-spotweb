@@ -1,8 +1,0 @@
-#!/usr/bin/with-contenv bash
-
-# permissions
-chown -R abc:abc \
-	/app
-
-# allow buffering of fastcgi responses
-chown -R abc:root /var/tmp/nginx

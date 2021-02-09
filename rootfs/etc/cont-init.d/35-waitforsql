@@ -5,6 +5,6 @@ mysql_port="${DB_PORT:-3306}"
 
 until nc -z -v -w30 $mysql_host $mysql_port
 do
-  echo "Waiting for database connection at host '$mysql_host:$mysql_port'..."
-  sleep 2
+  echo "Waiting (5 seconds) for database connection at host '$mysql_host:$mysql_port'..."
+  sleep 5
 done
