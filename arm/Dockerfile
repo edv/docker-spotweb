@@ -6,33 +6,33 @@ RUN apk -U update && \
     apk -U add --no-cache \
         git \
         nginx \
-        php7 \
-        php7-fpm \
-        php7-curl \
-        php7-dom \
-        php7-gettext \
-        php7-xml \
-        php7-simplexml \
-        php7-zip \
-        php7-zlib \
-        php7-gd \
-        php7-openssl \
-        php7-mysqli \
-        php7-pdo \
-        php7-pdo_mysql \
-        php7-pgsql \
-        php7-pdo_pgsql \
-        php7-sqlite3 \
-        php7-pdo_sqlite \
-        php7-json \
-        php7-mbstring \
-        php7-ctype \
-        php7-opcache \
-        php7-session \
+        php8 \
+        php8-fpm \
+        php8-curl \
+        php8-dom \
+        php8-gettext \
+        php8-xml \
+        php8-simplexml \
+        php8-zip \
+        php8-zlib \
+        php8-gd \
+        php8-openssl \
+        php8-mysqli \
+        php8-pdo \
+        php8-pdo_mysql \
+        php8-pgsql \
+        php8-pdo_pgsql \
+        php8-sqlite3 \
+        php8-pdo_sqlite \
+        php8-json \
+        php8-mbstring \
+        php8-ctype \
+        php8-opcache \
+        php8-session \
         mysql-client \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app && \
-    sed -i "s/;date.timezone =/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php7/php.ini
+    sed -i "s/;date.timezone =/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php8/php.ini
 
 RUN echo "*/5       *       *       *       *       run-parts /etc/periodic/5min" >> /etc/crontabs/root
 
