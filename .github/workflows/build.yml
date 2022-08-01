@@ -14,15 +14,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up QEMU # https://github.com/docker/setup-qemu-action
+      - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
-      - name: Set up Docker Buildx # https://github.com/docker/setup-buildx-action
+      - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
-
-      - name: Build the Docker image
-        run: docker build . --file ./x86/Dockerfile --tag erikdevries/spotweb:$(date +%s) --tag erikdevries/spotweb:latest
 
       - name: Login to Docker Hub
         if: github.event_name != 'pull_request'
@@ -30,6 +27,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            erikdevries/spotweb:latest
+            erikdevries/spotweb:$(date +%s)
 
       - name: Inspect builder
         run: |
