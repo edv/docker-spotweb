@@ -15,6 +15,8 @@ RUN apk -U update && \
         curl \
         git \
         nginx \
+        tar \
+        xz \
         php8 \
         php8-fpm \
         php8-curl \
@@ -51,8 +53,6 @@ COPY ./conf/spotweb /app
 # Copy root filesystem
 COPY rootfs /
 
-RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
-
 # s6 overlay
 RUN \
   case ${TARGETPLATFORM} in \
@@ -60,8 +60,8 @@ RUN \
     "linux/arm64")  S6_OVERLAY_ARCH=arm  ;; \
     "linux/arm/v7") S6_OVERLAY_ARCH=armhf  ;; \
   esac; \
-  && curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -xzC / \
-  && curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.xz | tar -xzC /
+  curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -xJC / && \
+  curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.xz | tar -xJC /
 
 # create default user / group and folders
 RUN groupadd -g 1000 abc && \
