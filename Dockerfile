@@ -1,7 +1,6 @@
 FROM --platform=${BUILDPLATFORM} alpine:3.16
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
-ARG BUILDPLATFORM
 ARG TARGETPLATFORM
 ARG S6_OVERLAY_VERSION="3.1.1.2"
 
@@ -53,7 +52,7 @@ COPY ./conf/spotweb /app
 # Copy root filesystem
 COPY rootfs /
 
-# s6 overlay
+# Install s6 overlay
 RUN \
   case ${TARGETPLATFORM} in \
     "linux/amd64")  S6_OVERLAY_ARCH=x86_64  ;; \
