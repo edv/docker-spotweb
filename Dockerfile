@@ -1,9 +1,10 @@
-FROM --platform=${BUILDPLATFORM} alpine:3.16
-MAINTAINER Erik de Vries <docker@erikdevries.nl>
+FROM alpine:3.16
+LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 ARG TARGETPLATFORM
 ARG S6_OVERLAY_VERSION="3.1.1.2"
 
+# Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 
 RUN apk -U update && \
