@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 PUID=${PUID:-1000}
 PGID=${PGID:-1000}

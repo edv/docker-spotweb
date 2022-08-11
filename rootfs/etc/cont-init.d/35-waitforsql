@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 mysql_host="${DB_HOST:-mysql}"
 mysql_port="${DB_PORT:-3306}"
