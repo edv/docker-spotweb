@@ -40,6 +40,7 @@ RUN apk -U update && \
         php8-opcache \
         php8-session \
         mysql-client \
+        mariadb-connector-c \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app && \
     sed -i "s/;date.timezone =/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php8/php.ini
