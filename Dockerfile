@@ -4,6 +4,8 @@ MAINTAINER Erik de Vries <docker@erikdevries.nl>
 ARG TARGETPLATFORM
 ARG S6_OVERLAY_VERSION="3.1.1.2"
 
+ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+
 RUN apk -U update && \
     apk -U upgrade && \
     apk -U add --no-cache \
