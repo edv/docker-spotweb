@@ -49,9 +49,6 @@ RUN echo "*/5       *       *       *       *       run-parts /etc/periodic/5min
 # Configure Spotweb
 COPY ./conf/spotweb /app
 
-# Copy root filesystem
-COPY rootfs /
-
 # Install s6 overlay
 RUN \
   case ${TARGETPLATFORM} in \
@@ -61,6 +58,9 @@ RUN \
   esac; \
   curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -xJC / && \
   curl -L https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.xz | tar -xJC /
+
+# Copy root filesystem
+COPY rootfs /
 
 # create default user / group and folders
 RUN groupadd -g 1000 abc && \
