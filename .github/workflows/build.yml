@@ -36,14 +36,3 @@ jobs:
           push: true
           tags: |
             erikdevries/playground:latest
-
-      - name: Inspect builder
-        run: |
-          echo "Name:      ${{ steps.buildx.outputs.name }}"
-          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
-          echo "Status:    ${{ steps.buildx.outputs.status }}"
-          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
-          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
-
-      - name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
