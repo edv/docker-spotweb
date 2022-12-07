@@ -1,15 +1,13 @@
-version: '2'
+version: "3"
 services:
   spotweb:
-    build:
-      context: .
-      dockerfile: ./x86/Dockerfile
+    build: .
     ports:
-     - "8080:80"
+      - "8080:80"
     depends_on:
-    - "mysql"
+      - "mysql"
   mysql:
-    image: "mysql:5.7"
+    image: "mysql"
     environment:
       MYSQL_ROOT_PASSWORD: 123
       MYSQL_USER: spotweb
