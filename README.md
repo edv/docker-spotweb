@@ -8,11 +8,11 @@ The main goal of this Dockerfile is to easily set up Spotweb using Docker on the
 - Visit [Spotweb on Docker Hub](https://hub.docker.com/repository/docker/erikdevries/spotweb)
 - The pre-build image works on multiple CPU architectures (x86, arm64 and armv7)
 
-## Alternative: Quick setup using dockerfile
+## Quick setup using dockerfile
 
 _Spotweb always requires a database server (e.g. MySQL), the easiest solution is to use the docker-compose setup. The other option is to manually specify an external server using the ENV variables below._
 
-`docker run -p 8080:80 --name spotweb -d -v /etc/localtime:/etc/localtime:ro erikdevries/spotweb`
+`docker run -p 8085:80 --name spotweb -d -v /etc/localtime:/etc/localtime:ro erikdevries/spotweb`
 
 Provide one or more of the following environment variables to configure the database server (all optional, default values are given below):
 
@@ -25,12 +25,12 @@ Provide one or more of the following environment variables to configure the data
 
 E.g. to configure server with host `some.external.mysql-server.com` and port `6612` do the following:
 
-`docker run -p 8080:80 --name spotweb -d -v /etc/localtime:/etc/localtime:ro -e "DB_HOST=some.external.mysql-server.com" -e "DB_PORT=6612" erikdevries/spotweb`
+`docker run -p 8085:80 --name spotweb -d -v /etc/localtime:/etc/localtime:ro -e "DB_HOST=some.external.mysql-server.com" -e "DB_PORT=6612" erikdevries/spotweb`
 
-## Alternative: Quick setup using docker compose
+## Quick setup using docker compose
 
 - `docker compose up` or `docker compose -f docker-compose-local.yml up` to build the image locally
-- Visit `http://localhost:8080`
+- Visit `http://localhost:8085`
 - Login with username `admin` and password `spotweb`
 - Configure usenet server and wait for cronjob to update (runs once every 5 minutes)
 

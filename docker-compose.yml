@@ -3,7 +3,7 @@ services:
   spotweb:
     image: erikdevries/spotweb
     ports:
-      - "8080:80"
+      - "8085:80"
     depends_on:
       - "mysql"
   mysql:
@@ -13,3 +13,8 @@ services:
       MYSQL_USER: spotweb
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
