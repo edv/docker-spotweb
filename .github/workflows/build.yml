@@ -19,9 +19,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            erikdevries/playground
             erikdevries/spotweb
-            erikdevries/spotweb-rpi
+            erikdevries/rpi-spotweb
           tags: |
             type=ref,event=branch
             type=ref,event=pr
