@@ -18,7 +18,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: erikdevries/playground
+          images: |
+            erikdevries/playground
+            erikdevries/spotweb
+            erikdevries/spotweb-rpi
           tags: |
             type=ref,event=branch
             type=ref,event=pr

@@ -29,7 +29,7 @@ E.g. to configure server with host `some.external.mysql-server.com` and port `66
 
 ## Alternative: Quick setup using docker compose
 
-- `docker compose up`
+- `docker compose up` or `docker compose -f docker-compose-local.yml up` to build the image locally
 - Visit `http://localhost:8080`
 - Login with username `admin` and password `spotweb`
 - Configure usenet server and wait for cronjob to update (runs once every 5 minutes)
