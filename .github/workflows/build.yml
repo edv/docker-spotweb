@@ -3,6 +3,8 @@ name: Build
 on:
   push:
     branches: ["master"]
+  pull_request:
+    branches: ["master"]
 
 jobs:
   build:
@@ -11,6 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: erikdevries/playground
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -27,10 +35,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
+        #if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: |
-            erikdevries/playground:latest
+          tags: ${{ steps.meta.outputs.tags }}
