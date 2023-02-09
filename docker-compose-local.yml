@@ -13,3 +13,8 @@ services:
       MYSQL_USER: spotweb
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
