@@ -8,6 +8,7 @@ _Spotweb always requires a database server (e.g. MySQL), the easiest solution is
 
 Provide one or more of the following environment variables to configure the database server (all optional, default values are given below):
 
+- TZ (default = `Europe/Amsterdam`)
 - DB_ENGINE (default = `pdo_mysql`)
 - DB_HOST (default = `mysql`)
 - DB_PORT (default = `3306`)
@@ -15,13 +16,14 @@ Provide one or more of the following environment variables to configure the data
 - DB_USER (default = `spotweb`)
 - DB_PASS (default = `spotweb`)
 
-E.g. to configure MySQL database server with host `some.external.mysql-server.com` and port `6612` do the following:
+E.g. to configure MySQL database server with host `some.external.mysql-server.com`, port `6612` and timezone `Europe/London` do the following:
 
 ```
 docker run -p 8085:80 \
   --name spotweb -d \
   -e DB_HOST=some.external.mysql-server.com \
   -e DB_PORT=6612 \
+  -e TZ=Europe/London \
   erikdevries/spotweb
 ```
 
@@ -34,6 +36,7 @@ docker run -p 8085:80 \
   --name spotweb -d \
   -e DB_HOST=some.external.mysql-server.com \
   -e DB_PORT=6612 \
+  -e TZ=Europe/London \
   spotweb
 ```
 

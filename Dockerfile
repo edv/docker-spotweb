@@ -3,6 +3,7 @@ LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
+ENV TZ=Europe/Amsterdam
 
 RUN apk -U update && \
     apk -U upgrade && \
@@ -16,6 +17,7 @@ RUN apk -U update && \
         nginx \
         tar \
         xz \
+        tzdata \
         php81 \
         php81-fpm \
         php81-curl \
@@ -43,8 +45,7 @@ RUN apk -U update && \
         mariadb-connector-c \
         s6-overlay \
     && \
-    git clone --depth=1 https://github.com/spotweb/spotweb.git /app && \
-    sed -i "s/;date.timezone =/date.timezone = \"Europe\/Amsterdam\"/g" /etc/php81/php.ini
+    git clone --depth=1 https://github.com/spotweb/spotweb.git /app
 
 RUN echo "*/5       *       *       *       *       run-parts /etc/periodic/5min" >> /etc/crontabs/root
 

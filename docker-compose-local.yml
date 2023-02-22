@@ -2,6 +2,8 @@ version: '3'
 services:
   spotweb:
     build: .
+    environment:
+      TZ: Europe/Amsterdam
     ports:
       - '8085:80'
     depends_on:
