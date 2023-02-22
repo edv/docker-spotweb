@@ -52,6 +52,17 @@ Included are example Docker Compose files, modify them as desired (e.g. change t
 - Login with username `admin` and password `spotweb`
 - Configure usenet server, spot retention, etc. and wait for spots to appear (retrieval script runs once every 5 minutes)
 
+## Tip: Using `ownsettings.php`
+
+You can override Spotweb settings by using a custom `ownsettings.php` file. In most cases there is no need to use this feature, so only use this when you know what you are doing!
+
+The example below will mount `/external/ownsettings.php` to `/app/ownsettings.php` inside the container. Spotweb will see the ownsettings file and load it automatically.
+
+```
+volumes:
+- /external/ownsettings.php:/app/ownsettings.php
+```
+
 ## Information
 
 - In the past separate images were created for x86 and arm in separate Docker Hub repositories, for the most up to date image please visit [Docker Hub](https://hub.docker.com/repository/docker/erikdevries/spotweb)
