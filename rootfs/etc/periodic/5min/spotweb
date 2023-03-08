@@ -1,3 +1,16 @@
 #!/bin/sh
 
-s6-setuidgid abc php81 /app/retrieve.php
+mysql_host="${DB_HOST:-mysql}"
+mysql_port="${DB_PORT:-3306}"
+mysql_user="${DB_USER:-spotweb}"
+mysql_pass="${DB_PASS:-spotweb}"
+mysql_db="${DB_NAME:-spotweb}"
+
+nntp_servers=`mysql --user=$mysql_user --password=$mysql_pass --host=$mysql_host --port=$mysql_port $mysql_db -sse "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';"`
+
+if [ "$nntp_servers" -eq 0 ];
+then
+  echo "NNTP server not configured, skipping retrieval of new headers"
+else
+  s6-setuidgid abc php81 /app/retrieve.php
+fi
