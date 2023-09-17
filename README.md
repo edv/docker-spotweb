@@ -50,7 +50,18 @@ Included are example Docker Compose files, modify them as desired (e.g. change t
 
 - Visit `http://localhost:8085`
 - Login with username `admin` and password `spotweb`
-- Configure usenet server, spot retention, etc. and wait for spots to appear (retrieval script runs once every 5 minutes)
+- Configure usenet server, spot retention, etc. and wait for spots to appear (retrieval script by default runs once every 5 minutes, see below how to change this update interval)
+
+## Change Spotweb update interval
+
+- By default Spotweb will update every 5 minutes
+- Change the `CRON_INTERVAL` environment variable to any valid cronjob expression (see e.g. https://cron.help/ for more information, default 5 minute interval is configured in the docker-compose.yml file as an example)
+- Restart the Spotweb Docker container (during start-up it will display the current configured update interval)
+
+## Change timezone
+
+- Change the `TZ` environment variable to any valid timezone (e.g. Europe/Amsterdam or Europe/Lisbon)
+- Restart the Spotweb Docker container
 
 ## Tip: Using `ownsettings.php`
 

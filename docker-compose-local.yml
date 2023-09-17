@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       TZ: Europe/Amsterdam
+      CRON_INTERVAL: '*/1 * * * *'
     ports:
       - '8085:80'
     depends_on:

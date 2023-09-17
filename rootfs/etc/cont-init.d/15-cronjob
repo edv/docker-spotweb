@@ -1,0 +1,12 @@
+#!/command/with-contenv bash
+
+echo '
+-------------------------------------
+Spotweb Update Cronjob
+-------------------------------------'
+echo "
+Update interval:    $CRON_INTERVAL
+-------------------------------------
+"
+
+echo "$CRON_INTERVAL    run-parts /etc/periodic/custom" > /etc/crontabs/root

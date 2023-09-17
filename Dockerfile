@@ -1,9 +1,11 @@
-FROM alpine:3.17
+FROM alpine:3.18
 LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 ENV TZ=Europe/Amsterdam
+# Default 5 minute interval configuration for Spotweb update cronjob
+ENV CRON_INTERVAL="*/5 * * * *"
 
 RUN apk -U update && \
     apk -U upgrade && \
@@ -46,8 +48,6 @@ RUN apk -U update && \
         s6-overlay \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app
-
-RUN echo "*/5       *       *       *       *       run-parts /etc/periodic/5min" >> /etc/crontabs/root
 
 # Configure Spotweb
 COPY ./conf/spotweb /app
