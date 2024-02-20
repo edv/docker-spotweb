@@ -7,12 +7,12 @@ mysql_pass="${DB_PASS:-spotweb}"
 mysql_db="${DB_NAME:-spotweb}"
 
 # upgrade the db
-s6-setuidgid abc php81 /app/bin/upgrade-db.php
+s6-setuidgid abc php82 /app/bin/upgrade-db.php
 
 if [ $(mysql --user=$mysql_user --password=$mysql_pass --host=$mysql_host --port=$mysql_port $mysql_db -sse "select count(*) from users where username = 'admin' and lastlogin = 0;") -eq 1 ];
 then
     echo "Admin has not logged in, set default password"
-    s6-setuidgid abc php81 /app/bin/upgrade-db.php --reset-password admin
+    s6-setuidgid abc php82 /app/bin/upgrade-db.php --reset-password admin
 else
     echo "Admin has already logged in, no need to set default password"
 fi

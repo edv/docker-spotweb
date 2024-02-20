@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
@@ -20,29 +20,29 @@ RUN apk -U update && \
         tar \
         xz \
         tzdata \
-        php81 \
-        php81-fpm \
-        php81-curl \
-        php81-dom \
-        php81-gettext \
-        php81-xml \
-        php81-simplexml \
-        php81-zip \
-        php81-zlib \
-        php81-gd \
-        php81-openssl \
-        php81-mysqli \
-        php81-pdo \
-        php81-pdo_mysql \
-        php81-pgsql \
-        php81-pdo_pgsql \
-        php81-sqlite3 \
-        php81-pdo_sqlite \
-        php81-json \
-        php81-mbstring \
-        php81-ctype \
-        php81-opcache \
-        php81-session \
+        php82 \
+        php82-fpm \
+        php82-curl \
+        php82-dom \
+        php82-gettext \
+        php82-xml \
+        php82-simplexml \
+        php82-zip \
+        php82-zlib \
+        php82-gd \
+        php82-openssl \
+        php82-mysqli \
+        php82-pdo \
+        php82-pdo_mysql \
+        php82-pgsql \
+        php82-pdo_pgsql \
+        php82-sqlite3 \
+        php82-pdo_sqlite \
+        php82-json \
+        php82-mbstring \
+        php82-ctype \
+        php82-opcache \
+        php82-session \
         mysql-client \
         mariadb-connector-c \
         s6-overlay \

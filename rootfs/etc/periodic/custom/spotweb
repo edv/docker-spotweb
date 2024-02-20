@@ -12,5 +12,5 @@ if [ "$nntp_servers" -eq 0 ];
 then
   echo "NNTP server not configured, skipping retrieval of new headers"
 else
-  s6-setuidgid abc php81 /app/retrieve.php
+  s6-setuidgid abc php82 /app/retrieve.php
 fi
