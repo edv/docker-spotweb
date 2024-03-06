@@ -9,6 +9,8 @@ services:
       - '8085:80'
     depends_on:
       - 'mysql'
+    # volumes:
+    #   - ./cache:/app/cache
   mysql:
     image: 'mysql'
     environment:

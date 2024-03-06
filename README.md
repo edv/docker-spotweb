@@ -52,6 +52,12 @@ Included are example Docker Compose files, modify them as desired (e.g. change t
 - Login with username `admin` and password `spotweb`
 - Configure usenet server, spot retention, etc. and wait for spots to appear (retrieval script by default runs once every 5 minutes, see below how to change this update interval)
 
+## Store cache outside container
+
+- By default Spotweb store cache (like images) inside of the Docker container (in `/app/cache`)
+- This results in the cache being removed when the container is recreated (e.g. when a new Docker image is pulled)
+- To retain this cache you can mount a volume to `/app/cache` see the commented lines in the included Docker Compose files
+
 ## Change Spotweb update interval
 
 - By default Spotweb will update every 5 minutes
