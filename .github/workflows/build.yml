@@ -49,6 +49,9 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
 
+        # Run Trivy vulnerability scanner to gain insight in the security of the Docker image
+        # Output is for informational purposes only, any vulnerabilities found under /app
+        # should be resolved in the spotweb repository
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
