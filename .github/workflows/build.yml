@@ -52,7 +52,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'erikdevries/spotweb:${{ github.sha }}'
+          image-ref: 'erikdevries/spotweb:${{ steps.meta.outputs.version }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
