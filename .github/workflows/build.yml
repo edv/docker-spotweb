@@ -53,8 +53,6 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'erikdevries/spotweb:${{ steps.meta.outputs.version }}'
-          format: 'github'
-          ignore-unfixed: true
           severity: 'MEDIUM,CRITICAL,HIGH'
 
       - name: Build and push
