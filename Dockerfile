@@ -4,6 +4,12 @@ LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 ENV TZ=Europe/Amsterdam
+ENV DB_ENGINE=pdo_mysql
+ENV DB_HOST=mysql
+ENV DB_PORT=3306
+ENV DB_NAME=spotweb
+ENV DB_USER=spotweb
+ENV DB_PASS=spotweb
 # Default 5 minute interval configuration for Spotweb update cronjob
 ENV CRON_INTERVAL="*/5 * * * *"
 
