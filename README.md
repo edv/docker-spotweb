@@ -69,6 +69,25 @@ Included are example Docker Compose files, modify them as desired (e.g. change t
 - Change the `TZ` environment variable to any valid timezone (e.g. Europe/Amsterdam or Europe/Lisbon)
 - Restart the Spotweb Docker container
 
+## Use SQLite instead of MySQL
+
+SQLite is a light-weight serverless database engine and stores all content in a single file. Note that SQLite support in Spotweb is the least-tested database mode. Please report any issues to the [Spotweb project](https://github.com/spotweb/spotweb).
+
+- Change the `DB_ENGINE` variable to `pdo_sqlite`
+- Set the path to the database file in `DB_NAME`
+- Make sure, your database directory (or file) is mounted as a volume to not lose all data when the container is rebuilt
+
+```
+docker run -p 8085:80 \
+  --name spotweb -d \
+  -e DB_ENGINE=pdo_sqlite \
+  -e DB_NAME=/data/spotweb.db3 \
+  -v /local/path/to/spotweb-data:/data:rw \
+  erikdevries/spotweb
+```
+
+See `docker-compose-sqlite.yml` for an example Docker Compose setup.
+
 ## Tip: Using `ownsettings.php`
 
 You can override Spotweb settings by using a custom `ownsettings.php` file. In most cases there is no need to use this feature, so only use this when you know what you are doing!
