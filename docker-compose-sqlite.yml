@@ -9,7 +9,7 @@ services:
     ports:
       - '8085:80'
     volumes:
-      - sqlite:/data
+      - sqlitedata:/data
 
 volumes:
-  sqlite:
+  sqlitedata:

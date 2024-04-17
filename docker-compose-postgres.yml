@@ -22,7 +22,7 @@ services:
       POSTGRES_PASSWORD: spotweb
       POSTGRES_DB: spotweb
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgresdata:/var/lib/postgresql/data
 
 volumes:
-  postgres:
+  postgresdata:

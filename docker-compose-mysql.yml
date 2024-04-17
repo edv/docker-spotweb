@@ -23,7 +23,7 @@ services:
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
     volumes:
-      - mysql:/var/lib/mysql
+      - mysqldata:/var/lib/mysql
 
 volumes:
-  mysql:
+  mysqldata:
