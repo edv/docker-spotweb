@@ -1,17 +1,15 @@
-version: '3'
 services:
   spotweb:
-    image: erikdevries/spotweb
+    build: .
     environment:
       TZ: Europe/Amsterdam
       DB_ENGINE: pdo_sqlite
       DB_NAME: /data/spotweb.db3
-      CRON_INTERVAL: '*/5 * * * *'
+      CRON_INTERVAL: '*/1 * * * *'
     ports:
       - '8085:80'
     volumes:
-      - dbdata:/data
-    #   - ./cache:/app/cache
+      - sqlite:/data
 
 volumes:
-  dbdata:
+  sqlite:

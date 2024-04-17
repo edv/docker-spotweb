@@ -51,6 +51,8 @@ RUN apk -U update && \
         php83-session \
         mysql-client \
         mariadb-connector-c \
+        postgresql-client \
+        sqlite \
         s6-overlay \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app
