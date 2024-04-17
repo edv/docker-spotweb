@@ -10,7 +10,7 @@ if [ "${DB_ENGINE:-pdo_mysql}" = "pdo_sqlite" ]; then
 fi
 
 # init/upgrade the db
-s6-setuidgid abc php82 /app/bin/upgrade-db.php
+s6-setuidgid abc php83 /app/bin/upgrade-db.php
 
 if [ "${DB_ENGINE:-pdo_mysql}" = "pdo_mysql" ]; then
   mysql_host="${DB_HOST:-mysql}"
@@ -21,13 +21,13 @@ if [ "${DB_ENGINE:-pdo_mysql}" = "pdo_mysql" ]; then
 
   admin_login_count=$(mysql --user=$mysql_user --password=$mysql_pass --host=$mysql_host --port=$mysql_port $mysql_db -sse "select count(*) from users where username = 'admin' and lastlogin = 0;")
 elif [ "${DB_ENGINE}" = "pdo_sqlite" ]; then
-  admin_login_count=$(s6-setuidgid abc php82 -r "\$pdo = new PDO('sqlite:'.\$_ENV['DB_NAME']); \$res = \$pdo->query('SELECT count(*) FROM users WHERE username=\"admin\" AND lastlogin=0;')->fetchAll(); echo \$res[0][0];")
+  admin_login_count=$(s6-setuidgid abc php83 -r "\$pdo = new PDO('sqlite:'.\$_ENV['DB_NAME']); \$res = \$pdo->query('SELECT count(*) FROM users WHERE username=\"admin\" AND lastlogin=0;')->fetchAll(); echo \$res[0][0];")
 fi
 
 if [ $admin_login_count -eq 1 ];
 then
   echo "Admin has not logged in, set default password"
-  s6-setuidgid abc php82 /app/bin/upgrade-db.php --reset-password admin
+  s6-setuidgid abc php83 /app/bin/upgrade-db.php --reset-password admin
 else
   echo "Admin has already logged in, no need to set default password"
 fi

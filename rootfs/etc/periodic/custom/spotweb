@@ -9,12 +9,12 @@ if [ "${DB_ENGINE:-pdo_mysql}" = "pdo_mysql" ]; then
 
   nntp_servers=`mysql --user=$mysql_user --password=$mysql_pass --host=$mysql_host --port=$mysql_port $mysql_db -sse "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';"`
 elif [ "${DB_ENGINE}" = "pdo_sqlite" ]; then
-  nntp_servers=$(s6-setuidgid abc php82 -r "\$pdo = new PDO('sqlite:'.\$_ENV['DB_NAME']); \$res = \$pdo->query('SELECT count(*) FROM settings WHERE (name = \'nntp_nzb\' OR name = \'nntp_hdr\') AND value NOT LIKE \'%s:4:\"host\";s:0:\"\"%\';')->fetchAll(); echo \$res[0][0];")
+  nntp_servers=$(s6-setuidgid abc php83 -r "\$pdo = new PDO('sqlite:'.\$_ENV['DB_NAME']); \$res = \$pdo->query('SELECT count(*) FROM settings WHERE (name = \'nntp_nzb\' OR name = \'nntp_hdr\') AND value NOT LIKE \'%s:4:\"host\";s:0:\"\"%\';')->fetchAll(); echo \$res[0][0];")
 fi
 
 if [ "$nntp_servers" -eq 0 ];
 then
   echo "NNTP server not configured, skipping retrieval of new headers"
 else
-  s6-setuidgid abc php82 /app/retrieve.php
+  s6-setuidgid abc php83 /app/retrieve.php
 fi
