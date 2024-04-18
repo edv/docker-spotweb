@@ -7,7 +7,7 @@ services:
       DB_NAME: /data/spotweb.db3
       CRON_INTERVAL: '*/1 * * * *'
     ports:
-      - '8085:80'
+      - '8087:80'
     volumes:
       - sqlite-data:/data
 

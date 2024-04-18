@@ -11,7 +11,7 @@ services:
       DB_PASS: spotweb
       CRON_INTERVAL: '*/1 * * * *'
     ports:
-      - '8085:80'
+      - '8086:80'
     depends_on:
       - database
 
