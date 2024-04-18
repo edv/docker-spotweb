@@ -1,6 +1,8 @@
+name: spotweb-mysql
+
 services:
   spotweb:
-    build: .
+    build: ../
     environment:
       TZ: Europe/Amsterdam
       DB_ENGINE: pdo_mysql

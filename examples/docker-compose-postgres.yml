@@ -1,6 +1,8 @@
+name: spotweb-postgres
+
 services:
   spotweb:
-    build: .
+    build: ../
     environment:
       TZ: Europe/Amsterdam
       DB_ENGINE: pdo_pgsql
@@ -11,7 +13,7 @@ services:
       DB_PASS: spotweb
       CRON_INTERVAL: '*/1 * * * *'
     ports:
-      - '8086:80'
+      - '8085:80'
     depends_on:
       - database
 
