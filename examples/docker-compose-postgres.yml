@@ -6,7 +6,7 @@ services:
     environment:
       TZ: Europe/Amsterdam
       DB_ENGINE: pdo_pgsql
-      DB_HOST: database
+      DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: spotweb
       DB_USER: spotweb
@@ -15,9 +15,9 @@ services:
     ports:
       - '8085:80'
     depends_on:
-      - database
+      - postgres
 
-  database:
+  postgres:
     image: 'postgres'
     environment:
       POSTGRES_USER: spotweb
