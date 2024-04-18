@@ -20,7 +20,7 @@ jobs:
           compose-flags: '-p spotwebmysql'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
-          test-command: 'curl http://localhost:8085'
+          test-command: 'curl http://localhost:8082'
 
       - name: Test Spotweb with PostgreSQL
         uses: adambirds/docker-compose-action@v1.3.0
@@ -29,7 +29,7 @@ jobs:
           compose-flags: '-p spotwebpostgres'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
-          test-command: 'curl http://localhost:8085'
+          test-command: 'curl http://localhost:8086'
 
       - name: Test Spotweb with SQLite
         uses: adambirds/docker-compose-action@v1.3.0
@@ -38,4 +38,4 @@ jobs:
           compose-flags: '-p spotwebsqlite'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
-          test-command: 'curl http://localhost:8085'
+          test-command: 'curl http://localhost:8087'
