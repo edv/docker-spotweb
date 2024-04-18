@@ -4,7 +4,7 @@ services:
     environment:
       TZ: Europe/Amsterdam
       DB_ENGINE: pdo_mysql
-      DB_HOST: mysql
+      DB_HOST: database
       DB_PORT: 3306
       DB_NAME: spotweb
       DB_USER: spotweb
@@ -13,9 +13,9 @@ services:
     ports:
       - '8085:80'
     depends_on:
-      - mysql
+      - database
 
-  mysql:
+  database:
     image: 'mysql'
     environment:
       MYSQL_ROOT_PASSWORD: test1234
@@ -23,7 +23,7 @@ services:
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
     volumes:
-      - mysqldata:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  mysqldata:
+  mysql-data:
