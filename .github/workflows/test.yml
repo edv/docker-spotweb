@@ -17,16 +17,22 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-mysql.yml'
-          test-command: 'npm test'
+          up-flags: '--build'
+          down-flags: '--volumes --remove-orphans'
+          test-command: 'curl http://localhost:8085'
 
       - name: Test Spotweb with PostgreSQL
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-postgres.yml'
-          test-command: 'npm test'
+          up-flags: '--build'
+          down-flags: '--volumes --remove-orphans'
+          test-command: 'curl http://localhost:8085'
 
       - name: Test Spotweb with SQLite
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-sqlite.yml'
-          test-command: 'npm test'
+          up-flags: '--build'
+          down-flags: '--volumes --remove-orphans'
+          test-command: 'curl http://localhost:8085'

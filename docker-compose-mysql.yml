@@ -1,5 +1,3 @@
-name: spotweb-mysql
-
 services:
   spotweb:
     build: .
@@ -13,7 +11,7 @@ services:
       DB_PASS: spotweb
       CRON_INTERVAL: '*/1 * * * *'
     ports:
-      - '8080:80'
+      - '8085:80'
     depends_on:
       - database
 
