@@ -1,0 +1,30 @@
+name: spotweb-postgres
+
+services:
+  spotweb:
+    build: ../
+    environment:
+      TZ: Europe/Amsterdam
+      DB_ENGINE: pdo_pgsql
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: spotweb
+      DB_USER: spotweb
+      DB_PASS: spotweb
+      CRON_INTERVAL: '*/1 * * * *'
+    ports:
+      - '8085:80'
+    depends_on:
+      - postgres
+
+  postgres:
+    image: 'postgres'
+    environment:
+      POSTGRES_USER: spotweb
+      POSTGRES_PASSWORD: spotweb
+      POSTGRES_DB: spotweb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

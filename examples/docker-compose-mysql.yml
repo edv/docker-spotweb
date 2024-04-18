@@ -1,16 +1,22 @@
-version: '3'
+name: spotweb-mysql
+
 services:
   spotweb:
-    build: .
+    build: ../
     environment:
       TZ: Europe/Amsterdam
+      DB_ENGINE: pdo_mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: spotweb
+      DB_USER: spotweb
+      DB_PASS: spotweb
       CRON_INTERVAL: '*/1 * * * *'
     ports:
       - '8085:80'
     depends_on:
-      - 'mysql'
-    # volumes:
-    #   - ./cache:/app/cache
+      - mysql
+
   mysql:
     image: 'mysql'
     environment:
@@ -19,7 +25,7 @@ services:
       MYSQL_PASSWORD: spotweb
       MYSQL_DATABASE: spotweb
     volumes:
-      - dbdata:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  dbdata:
+  mysql-data:

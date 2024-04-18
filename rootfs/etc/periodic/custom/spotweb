@@ -1,19 +1,14 @@
 #!/bin/sh
 
-if [ "${DB_ENGINE:-pdo_mysql}" = "pdo_mysql" ]; then
-  mysql_host="${DB_HOST:-mysql}"
-  mysql_port="${DB_PORT:-3306}"
-  mysql_user="${DB_USER:-spotweb}"
-  mysql_pass="${DB_PASS:-spotweb}"
-  mysql_db="${DB_NAME:-spotweb}"
-
-  nntp_servers=`mysql --user=$mysql_user --password=$mysql_pass --host=$mysql_host --port=$mysql_port $mysql_db -sse "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';"`
+if [ "${DB_ENGINE}" = "pdo_mysql" ]; then
+  nntp_servers=$(mysql --user=${DB_USER} --password=${DB_PASS} --host=${DB_HOST} --port=${DB_PORT} ${DB_NAME} -sse "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';")
+elif [ "${DB_ENGINE}" = "pdo_pgsql" ]; then
+  nntp_servers=$(PGPASSWORD=${DB_PASS} psql -At --username=${DB_USER} --host=${DB_HOST} --port=${DB_PORT} --dbname=${DB_NAME} -c "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';")
 elif [ "${DB_ENGINE}" = "pdo_sqlite" ]; then
-  nntp_servers=$(s6-setuidgid abc php83 -r "\$pdo = new PDO('sqlite:'.\$_ENV['DB_NAME']); \$res = \$pdo->query('SELECT count(*) FROM settings WHERE (name = \'nntp_nzb\' OR name = \'nntp_hdr\') AND value NOT LIKE \'%s:4:\"host\";s:0:\"\"%\';')->fetchAll(); echo \$res[0][0];")
+  nntp_servers=$(echo "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';" | sqlite3 ${DB_NAME})
 fi
 
-if [ "$nntp_servers" -eq 0 ];
-then
+if [ "$nntp_servers" -eq 0 ]; then
   echo "NNTP server not configured, skipping retrieval of new headers"
 else
   s6-setuidgid abc php83 /app/retrieve.php
