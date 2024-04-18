@@ -17,6 +17,7 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-mysql.yml'
+          compose-flags: '-p spotwebmysql'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
           test-command: 'curl http://localhost:8085'
@@ -25,6 +26,7 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-postgres.yml'
+          compose-flags: '-p spotwebpostgres'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
           test-command: 'curl http://localhost:8085'
@@ -33,6 +35,7 @@ jobs:
         uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: './docker-compose-sqlite.yml'
+          compose-flags: '-p spotwebsqlite'
           up-flags: '--build'
           down-flags: '--volumes --remove-orphans'
           test-command: 'curl http://localhost:8085'
