@@ -10,7 +10,7 @@ The easiest way to get Spotweb up and running is using the included `docker-comp
 docker compose up -d
 ```
 
-Have a look at the rest of documentation for more fine tuned configuration.
+Have a look at the rest of the documentation for more fine tuned configuration.
 
 ## Advanced database configuration
 
@@ -109,6 +109,20 @@ volumes:
 If you want to use Spotweb with for example Sonarr or Radarr (or any tool that is compatible with newznab indexers), create a new (non admin) user in Spotweb and use the API key associated with this new user.
 
 Next step is to set-up a custom newznab indexer in Sonarr or Radarr and point it to the Spotweb url with the API key from the newly created user.
+
+## All environment variables
+
+- **DB_ENGINE**, one of:
+  - `pdo_mysql` (MySQL, default)
+  - `pdo_pgsql` (PostgreSQL)
+  - `pdo_sqlite` (SQLite)
+- **DB_HOST** (default = `mysql`)
+- **DB_PORT** (default = `3306`)
+- **DB_NAME** (default = `spotweb`)
+- **DB_USER** (default = `spotweb`)
+- **DB_PASS** (default = `spotweb`)
+- **TZ** (default = `Europe/Amsterdam`)
+- **CRON_INTERVAL** (default = `*/5 * * * *`)
 
 ## Additional information
 
