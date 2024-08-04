@@ -47,7 +47,9 @@ RUN apk --no-cache upgrade && \
         php83-session \
         s6-overlay \
     && \
-    git clone --depth=1 https://github.com/spotweb/spotweb.git /app
+    git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
+    && \
+    rm -rf /app/.git
 
 # Configure Spotweb
 COPY ./conf/spotweb /app
