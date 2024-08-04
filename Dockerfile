@@ -13,9 +13,8 @@ ENV DB_PASS=spotweb
 # Default 5 minute interval configuration for Spotweb update cronjob
 ENV CRON_INTERVAL="*/5 * * * *"
 
-RUN apk -U update && \
-    apk -U upgrade && \
-    apk -U add --no-cache \
+RUN apk --no-cache upgrade && \
+    apk --no-cache add \
         bash \
         coreutils \
         ca-certificates \
