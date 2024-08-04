@@ -37,12 +37,9 @@ RUN apk -U update && \
         php83-zlib \
         php83-gd \
         php83-openssl \
-        php83-mysqli \
         php83-pdo \
         php83-pdo_mysql \
-        php83-pgsql \
         php83-pdo_pgsql \
-        php83-sqlite3 \
         php83-pdo_sqlite \
         php83-json \
         php83-mbstring \
