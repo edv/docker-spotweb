@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:latest
 LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
