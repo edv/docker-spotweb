@@ -1,12 +1,6 @@
 #!/bin/sh
 
-if [ "${DB_ENGINE}" = "pdo_mysql" ]; then
-  nntp_servers=$(mysql --user=${DB_USER} --password=${DB_PASS} --host=${DB_HOST} --port=${DB_PORT} ${DB_NAME} -sse "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';")
-elif [ "${DB_ENGINE}" = "pdo_pgsql" ]; then
-  nntp_servers=$(PGPASSWORD=${DB_PASS} psql -At --username=${DB_USER} --host=${DB_HOST} --port=${DB_PORT} --dbname=${DB_NAME} -c "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';")
-elif [ "${DB_ENGINE}" = "pdo_sqlite" ]; then
-  nntp_servers=$(echo "select count(*) from settings where (name = 'nntp_nzb' or name = 'nntp_hdr') and value not like '%s:4:\"host\";s:0:\"\"%';" | sqlite3 ${DB_NAME})
-fi
+nntp_servers=$(s6-setuidgid abc php83 /app/query.php --get_nntp_configured)
 
 if [ "$nntp_servers" -eq 0 ]; then
   echo "NNTP server not configured, skipping retrieval of new headers"
