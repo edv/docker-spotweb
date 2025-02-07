@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
@@ -13,9 +13,8 @@ ENV DB_PASS=spotweb
 # Default 5 minute interval configuration for Spotweb update cronjob
 ENV CRON_INTERVAL="*/5 * * * *"
 
-RUN apk -U update && \
-    apk -U upgrade && \
-    apk -U add --no-cache \
+RUN apk --no-cache upgrade && \
+    apk --no-cache add \
         bash \
         coreutils \
         ca-certificates \
@@ -37,25 +36,21 @@ RUN apk -U update && \
         php83-zlib \
         php83-gd \
         php83-openssl \
-        php83-mysqli \
         php83-pdo \
         php83-pdo_mysql \
-        php83-pgsql \
         php83-pdo_pgsql \
-        php83-sqlite3 \
         php83-pdo_sqlite \
         php83-json \
         php83-mbstring \
         php83-ctype \
         php83-opcache \
         php83-session \
-        mysql-client \
-        mariadb-connector-c \
-        postgresql-client \
-        sqlite \
+        php83-intl \
         s6-overlay \
     && \
-    git clone --depth=1 https://github.com/spotweb/spotweb.git /app
+    git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
+    && \
+    rm -rf /app/.git
 
 # Configure Spotweb
 COPY ./conf/spotweb /app
