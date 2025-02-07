@@ -10,17 +10,17 @@ if [ "${DB_ENGINE}" = "pdo_sqlite" ]; then
 fi
 
 # init/upgrade the db
-s6-setuidgid abc php83 /app/bin/upgrade-db.php
+s6-setuidgid abc php84 /app/bin/upgrade-db.php
 
 # Run query to check if admin has logged in
-admin_lastlogin=$(s6-setuidgid abc php83 /app/query.php --get_admin_lastlogin)
+admin_lastlogin=$(s6-setuidgid abc php84 /app/query.php --get_admin_lastlogin)
 
 if [ $admin_lastlogin -eq 0 ];
 then
   # besides resetting the admin password, this step also finalizes the set-up of the database
   # without this step the "settings" table is invalid causing Spotweb to be broken
   echo "Admin has not logged in, set default password (which is: spotweb)"
-  s6-setuidgid abc php83 /app/bin/upgrade-db.php --reset-password admin
+  s6-setuidgid abc php84 /app/bin/upgrade-db.php --reset-password admin
 else
   echo "Admin has already logged in, no need to set default password"
 fi
