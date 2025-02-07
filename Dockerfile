@@ -25,27 +25,27 @@ RUN apk --no-cache upgrade && \
         tar \
         xz \
         tzdata \
-        php83 \
-        php83-fpm \
-        php83-curl \
-        php83-dom \
-        php83-gettext \
-        php83-xml \
-        php83-simplexml \
-        php83-zip \
-        php83-zlib \
-        php83-gd \
-        php83-openssl \
-        php83-pdo \
-        php83-pdo_mysql \
-        php83-pdo_pgsql \
-        php83-pdo_sqlite \
-        php83-json \
-        php83-mbstring \
-        php83-ctype \
-        php83-opcache \
-        php83-session \
-        php83-intl \
+        php84 \
+        php84-fpm \
+        php84-curl \
+        php84-dom \
+        php84-gettext \
+        php84-xml \
+        php84-simplexml \
+        php84-zip \
+        php84-zlib \
+        php84-gd \
+        php84-openssl \
+        php84-pdo \
+        php84-pdo_mysql \
+        php84-pdo_pgsql \
+        php84-pdo_sqlite \
+        php84-json \
+        php84-mbstring \
+        php84-ctype \
+        php84-opcache \
+        php84-session \
+        php84-intl \
         s6-overlay \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
