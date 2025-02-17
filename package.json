@@ -1,10 +1,10 @@
 {
   "name": "docker-spotweb-tests",
   "version": "1.0.0",
-  "description": "Selenium tests for Spotweb",
+  "description": "Playwright tests for Spotweb Docker",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/test_login.js"
+    "test": "npx playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.1",
