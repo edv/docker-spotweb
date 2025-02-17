@@ -7,6 +7,7 @@
     "test": "node tests/test_login.js"
   },
   "dependencies": {
+    "chromedriver": "^133.0.1",
     "selenium-webdriver": "^4.0.0"
   }
 }

@@ -1,5 +1,8 @@
 const { Builder, By, until } = require('selenium-webdriver');
 
+/*
+ * This test will login to the Spotweb login page and check if the JSON result is as expected.
+ */
 (async function testLogin() {
   const driver = await new Builder().forBrowser('chrome').build();
   try {
