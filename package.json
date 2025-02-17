@@ -1,0 +1,13 @@
+{
+  "name": "docker-spotweb-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for Spotweb Docker",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.4"
+  }
+}
