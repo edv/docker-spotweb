@@ -51,7 +51,23 @@ jobs:
 
       - name: Test
         run: |
-          docker run --rm ${{ steps.meta.outputs.tags }}
+          docker run -d --name spotweb \
+            -e TZ=Europe/Amsterdam \
+            -e DB_ENGINE='pdo_sqlite' \
+            -e DB_NAME='/data/spotweb.db3' \
+            -p 8080:80 \
+            ${{ steps.meta.outputs.tags }}
+
+      # - name: Run Selenium tests
+      #   run: |
+      #     pip install selenium
+      #     python -m unittest discover -s tests/selenium
+
+      - name: Stop Docker container
+        run: docker stop spotweb
+
+      - name: Remove Docker container
+        run: docker rm spotweb
 
       - name: Build and push
         if: github.event_name != 'pull_request'
