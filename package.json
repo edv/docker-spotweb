@@ -1,0 +1,12 @@
+{
+  "name": "docker-spotweb-tests",
+  "version": "1.0.0",
+  "description": "Selenium tests for Spotweb",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/test_login.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0"
+  }
+}

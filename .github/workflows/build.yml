@@ -49,6 +49,22 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install selenium-webdriver
+          npm install chromedriver
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+
       - name: Test
         run: |
           docker run -d --name spotweb \
@@ -56,12 +72,10 @@ jobs:
             -e DB_ENGINE='pdo_sqlite' \
             -e DB_NAME='/data/spotweb.db3' \
             -p 8080:80 \
-            ${{ steps.meta.outputs.tags }}
+            erikdevries/spotweb:latest
 
-      # - name: Run Selenium tests
-      #   run: |
-      #     pip install selenium
-      #     python -m unittest discover -s tests/selenium
+      - name: Run login test
+        run: node tests/test_login.js
 
       - name: Stop Docker container
         run: docker stop spotweb
