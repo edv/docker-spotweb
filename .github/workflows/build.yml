@@ -56,9 +56,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm init -y
           npm install selenium-webdriver
           npm install chromedriver
+          npm install
 
       - name: Install Chrome
         uses: browser-actions/setup-chrome@latest
@@ -72,7 +72,7 @@ jobs:
             -e DB_ENGINE='pdo_sqlite' \
             -e DB_NAME='/data/spotweb.db3' \
             -p 8080:80 \
-            erikdevries/spotweb:latest
+            ${{ steps.meta.outputs.tags }}
 
       - name: Run login test
         run: node tests/test_login.js
