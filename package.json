@@ -6,8 +6,8 @@
   "scripts": {
     "test": "node tests/test_login.js"
   },
-  "dependencies": {
-    "chromedriver": "^133.0.1",
-    "selenium-webdriver": "^4.0.0"
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.4"
   }
 }

@@ -62,18 +62,16 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23'
-
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
+          node-version: lts/*
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run login test
-        run: npm run test
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test
 
       - name: Stop Docker container
         run: docker stop spotweb
