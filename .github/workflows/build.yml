@@ -49,6 +49,10 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
 
+      - name: Test
+        run: |
+          docker run --rm ${{ steps.meta.outputs.tags }}
+
       - name: Build and push
         if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v5

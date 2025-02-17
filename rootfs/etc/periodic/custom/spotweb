@@ -1,9 +1,9 @@
 #!/bin/sh
 
-nntp_servers=$(s6-setuidgid abc php84 /app/query.php --get_nntp_configured)
+nntp_servers=$(s6-setuidgid abc php /app/query.php --get_nntp_configured)
 
 if [ "$nntp_servers" -eq 0 ]; then
   echo "NNTP server not configured, skipping retrieval of new headers"
 else
-  s6-setuidgid abc php84 /app/retrieve.php
+  s6-setuidgid abc php /app/retrieve.php
 fi

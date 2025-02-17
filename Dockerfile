@@ -48,6 +48,11 @@ RUN apk --no-cache upgrade && \
         php84-intl \
         s6-overlay \
     && \
+    # Symlink php and php-fpm to the 8.4 version to prevent changes to multiple files
+    ln -sf /usr/bin/php84 /usr/bin/php \
+    && \
+    ln -sf /usr/sbin/php-fpm84 /usr/sbin/php-fpm \
+    && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
     && \
     rm -rf /app/.git
