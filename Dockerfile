@@ -1,5 +1,5 @@
-FROM alpine:3.21
-LABEL maintainer "Erik de Vries <docker@erikdevries.nl>"
+FROM alpine:3.22
+LABEL maintainer="Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
