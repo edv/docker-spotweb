@@ -93,6 +93,14 @@ docker run -p 8085:80 \
 - Change the `TZ` environment variable to any valid timezone (e.g. Europe/Amsterdam or Europe/Lisbon)
 - Restart the Spotweb Docker container
 
+## Redirect access log
+
+By default, access logs are sent to stdout. In case you want to change it:
+
+* Set the `ACCESS_LOG` environment variable to the location of your liking (e.g. `/var/log/nginx/access.log`)
+
+* Restart the Spotweb Docker container
+
 ## Tip: Using `ownsettings.php`
 
 You can override Spotweb settings by using a custom `ownsettings.php` file. In most cases there is no need to use this feature, so only use this when you know what you are doing!
@@ -123,6 +131,7 @@ Next step is to set-up a custom newznab indexer in Sonarr or Radarr and point it
 - **DB_PASS** (default = `spotweb`)
 - **TZ** (default = `Europe/Amsterdam`)
 - **CRON_INTERVAL** (default = `*/5 * * * *`)
+- **ACCESS_LOG** (default = `/dev/stdout`)
 
 ## Additional information
 
