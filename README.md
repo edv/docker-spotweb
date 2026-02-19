@@ -4,7 +4,7 @@ The main goal of this project is to easily set up Spotweb using Docker on the Ra
 
 ## Getting started
 
-The easiest way to get Spotweb up and running is using the included `docker-compose.yml` file. This will run Spotweb together with MySQL.
+The easiest way to get Spotweb up and running is using the included `docker-compose.yml` file. This will run Spotweb (image published to Docker Hub) together with MySQL.
 
 ```bash
 docker compose up -d
