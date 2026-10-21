@@ -1,4 +1,4 @@
-FROM alpine:3.22
+FROM alpine:3.24
 LABEL maintainer="Erik de Vries <docker@erikdevries.nl>"
 
 # Disable timeout for starting services to make "wait for sql" work
@@ -25,34 +25,33 @@ RUN apk --no-cache upgrade && \
         tar \
         xz \
         tzdata \
-        php84 \
-        php84-fpm \
-        php84-curl \
-        php84-dom \
-        php84-gettext \
-        php84-xml \
-        php84-simplexml \
-        php84-zip \
-        php84-zlib \
-        php84-gd \
-        php84-openssl \
-        php84-pdo \
-        php84-pdo_mysql \
-        php84-pdo_pgsql \
-        php84-pdo_sqlite \
-        php84-json \
-        php84-mbstring \
-        php84-ctype \
-        php84-opcache \
-        php84-session \
-        php84-intl \
+        php85 \
+        php85-fpm \
+        php85-curl \
+        php85-dom \
+        php85-gettext \
+        php85-xml \
+        php85-simplexml \
+        php85-zip \
+        php85-zlib \
+        php85-gd \
+        php85-openssl \
+        php85-pdo \
+        php85-pdo_mysql \
+        php85-pdo_pgsql \
+        php85-pdo_sqlite \
+        php85-json \
+        php85-mbstring \
+        php85-ctype \
+        php85-session \
+        php85-intl \
         s6-overlay \
     && \
-    # Symlink php84 to php
-    ln -sf /usr/bin/php84 /usr/bin/php \
+    # Symlink php85 to php
+    ln -sf /usr/bin/php85 /usr/bin/php \
     && \
-    # Symlink php-fpm84 to php-fpm
-    ln -sf /usr/sbin/php-fpm84 /usr/sbin/php-fpm \
+    # Symlink php-fpm85 to php-fpm
+    ln -sf /usr/sbin/php-fpm85 /usr/sbin/php-fpm \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
     && \
