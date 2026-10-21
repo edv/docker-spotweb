@@ -1,5 +1,7 @@
-FROM alpine:3.24
+FROM php:8.5-fpm-alpine
 LABEL maintainer="Erik de Vries <docker@erikdevries.nl>"
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
@@ -25,33 +27,16 @@ RUN apk --no-cache upgrade && \
         tar \
         xz \
         tzdata \
-        php85 \
-        php85-fpm \
-        php85-curl \
-        php85-dom \
-        php85-gettext \
-        php85-xml \
-        php85-simplexml \
-        php85-zip \
-        php85-zlib \
-        php85-gd \
-        php85-openssl \
-        php85-pdo \
-        php85-pdo_mysql \
-        php85-pdo_pgsql \
-        php85-pdo_sqlite \
-        php85-json \
-        php85-mbstring \
-        php85-ctype \
-        php85-session \
-        php85-intl \
         s6-overlay \
     && \
-    # Symlink php85 to php
-    ln -sf /usr/bin/php85 /usr/bin/php \
-    && \
-    # Symlink php-fpm85 to php-fpm
-    ln -sf /usr/sbin/php-fpm85 /usr/sbin/php-fpm \
+    # Install PHP extensions not bundled with the official image
+    install-php-extensions \
+        gd \
+        gettext \
+        intl \
+        pdo_mysql \
+        pdo_pgsql \
+        zip \
     && \
     git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
     && \
