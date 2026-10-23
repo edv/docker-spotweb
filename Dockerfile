@@ -1,7 +1,18 @@
+# syntax=docker/dockerfile:1
 FROM php:8.5-fpm-alpine
 LABEL maintainer="Erik de Vries <docker@erikdevries.nl>"
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+# Install PHP extensions not bundled with the official image. Kept in a separate
+# layer so the (slow) compilation is cached as long as the base image is unchanged.
+RUN install-php-extensions \
+        gd \
+        gettext \
+        intl \
+        pdo_mysql \
+        pdo_pgsql \
+        zip
 
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
@@ -22,25 +33,14 @@ RUN apk --no-cache upgrade && \
         ca-certificates \
         shadow \
         curl \
-        git \
         nginx \
         tar \
         xz \
         tzdata \
-        s6-overlay \
-    && \
-    # Install PHP extensions not bundled with the official image
-    install-php-extensions \
-        gd \
-        gettext \
-        intl \
-        pdo_mysql \
-        pdo_pgsql \
-        zip \
-    && \
-    git clone --depth=1 https://github.com/spotweb/spotweb.git /app \
-    && \
-    rm -rf /app/.git
+        s6-overlay
+
+# Fetch Spotweb
+ADD https://github.com/spotweb/spotweb.git#develop /app
 
 # Configure Spotweb
 COPY ./conf/spotweb /app
