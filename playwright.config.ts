@@ -33,8 +33,9 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'chrome',
+      /* Use the Google Chrome preinstalled on GitHub runners, so CI doesn't need to download a browser */
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
   ],
 });
