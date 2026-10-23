@@ -48,6 +48,10 @@ jobs:
           context: .
           load: true
           tags: ${{ steps.meta.outputs.tags }}
+          # Scheduled builds skip the cache to pick up base image / Alpine package updates
+          no-cache: ${{ github.event_name == 'schedule' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Run Spotweb with SQLite for testing
         run: |
@@ -87,3 +91,6 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+          no-cache: ${{ github.event_name == 'schedule' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
