@@ -10,7 +10,7 @@
     "sqlite": "docker compose -f ./examples/docker-compose-sqlite.yml up"
   },
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
+    "@playwright/test": "^1.64.1",
     "@types/node": "^22.13.4"
   }
 }
