@@ -14,6 +14,9 @@ RUN install-php-extensions \
         pdo_pgsql \
         zip
 
+# Use production PHP settings (e.g. display_errors=Off), the official image ships without a php.ini
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 # Disable timeout for starting services to make "wait for sql" work
 ENV S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0
 ENV TZ=Europe/Amsterdam
